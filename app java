@@ -1,0 +1,49 @@
+package Biblioteca;
+
+import java.util.Scanner;
+
+public class App {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner leer =new Scanner(System.in);
+		
+		Biblioteca biblioteca =new Biblioteca();
+		
+		//Se crean objetos d ela clase Libro
+		Libro libro1 =new Libro(120,"Java","Pachita");
+		Libro libro2 =new Libro(130,"UML","Pachito");
+		Libro libro3 =new Libro(150,"Python","Albita");
+		Libro libro4 =new Libro(140,"C++","Francisco");
+		Libro libro5 =new Libro(170,"Php","Roberto");
+		
+		//Se adicionan los objetos a la lista de libros
+		biblioteca.asignarLibro(libro1);
+		biblioteca.asignarLibro(libro2);
+		biblioteca.asignarLibro(libro3);
+		biblioteca.asignarLibro(libro4);
+		biblioteca.asignarLibro(libro5);
+		
+		//Prestar un libro
+		
+		System.out.print("Entre el ISBN del libro aprestar ");
+		int isbn = leer.nextInt();
+		
+		Libro libroBuscado = biblioteca.buscarLibro(isbn);
+		
+		if(libroBuscado == null) {
+			if(libroBuscado.isEstado()) {
+			    libroBuscado.setEstado(false);
+		        Prestamo prestamo =new Prestamo(4152,libroBuscado,new Estudiante("Lucila"));
+		        biblioteca.asignarPrestamo(prestamo);
+		    }
+	    }else {
+	    	System.out.println("Yuca Libro No Existe");
+	    }
+		
+		biblioteca.listaLibros();
+		biblioteca.listaPrestamo();
+		
+	}
+
+}
